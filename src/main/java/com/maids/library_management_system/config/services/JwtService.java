@@ -27,6 +27,7 @@ public class JwtService {
         return this.generateJwtToken(new HashMap<>(), userDetails);
     }
 
+
     // the token is valid if the username is matching and the token isn't expired
     public boolean isTokenValid(String jwtToken, UserDetails userDetails) {
         final String username = extractUsername(jwtToken);
@@ -37,6 +38,7 @@ public class JwtService {
     public String extractUsername(String jwtToken) {
         return extractClaim(jwtToken, Claims::getSubject);
     }
+
     private boolean isTokenExpired(String jwtToken) {
         return extractExpiration(jwtToken).before(new Date());
     }
