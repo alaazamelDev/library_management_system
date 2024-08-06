@@ -6,6 +6,7 @@ import com.maids.library_management_system.borrowing.requests.ReturnBookRequest;
 import com.maids.library_management_system.borrowing.responses.BorrowingRecordResponse;
 import com.maids.library_management_system.borrowing.responses.BorrowingResponse;
 import com.maids.library_management_system.borrowing.services.BorrowingService;
+import com.maids.library_management_system.logging.annotations.Loggable;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ public class BorrowingController {
 
     private final BorrowingService borrowingService;
 
+    @Loggable
     @PostMapping("/borrow/{bookId}/patron/{patronId}")
     public ResponseEntity<BorrowingResponse> borrow(
             @PathVariable("bookId") Integer bookId,
@@ -48,6 +50,7 @@ public class BorrowingController {
         return ResponseEntity.ok(response);
     }
 
+    @Loggable
     @PutMapping("/return/{bookId}/patron/{patronId}")
     public ResponseEntity<BorrowingResponse> returnBook(
             @PathVariable("bookId") Integer bookId,

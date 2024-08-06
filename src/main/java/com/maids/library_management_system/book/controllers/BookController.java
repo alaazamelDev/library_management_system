@@ -5,6 +5,7 @@ import com.maids.library_management_system.book.requests.CreateBookRequest;
 import com.maids.library_management_system.book.requests.UpdateBookRequest;
 import com.maids.library_management_system.book.responses.BookResponse;
 import com.maids.library_management_system.book.services.BookService;
+import com.maids.library_management_system.logging.annotations.Loggable;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -31,13 +32,15 @@ public class BookController {
         return ResponseEntity.ok(BookResponse.from(bookService.findOne(id)));
     }
 
+    @Loggable
     @PostMapping
     public ResponseEntity<BookResponse> saveBook(@Valid @RequestBody CreateBookRequest request) {
         return ResponseEntity.ok(BookResponse.from(bookService.save(request)));
     }
 
+    @Loggable
     @PutMapping("/{id}")
-    public ResponseEntity<BookResponse> updateBook(@PathVariable("id") Integer id,@Valid @RequestBody UpdateBookRequest request) {
+    public ResponseEntity<BookResponse> updateBook(@PathVariable("id") Integer id, @Valid @RequestBody UpdateBookRequest request) {
         return ResponseEntity.ok(BookResponse.from(bookService.update(id, request)));
     }
 
