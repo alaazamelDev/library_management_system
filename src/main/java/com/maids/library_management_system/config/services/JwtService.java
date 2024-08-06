@@ -18,7 +18,7 @@ import java.util.function.Function;
 public class JwtService {
 
     // should be loaded from env file
-    private static final String SECRET_KEY = "9A7D4B4C45341FF248463666655E1";
+    private static final String SECRET_KEY = "9A7D4B4C45341FF248463666655E19A7D4B4C45341FF248463666655E1";
 
 
     public String generateAccessToken(
