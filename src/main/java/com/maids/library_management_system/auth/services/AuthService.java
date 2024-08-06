@@ -38,7 +38,6 @@ public class AuthService {
 
         // generate an access token
         var accessToken = jwtService.generateAccessToken(user);
-        System.out.println(accessToken);
         return AuthenticationResponse.builder()
                 .access_token(accessToken)
                 .build();
