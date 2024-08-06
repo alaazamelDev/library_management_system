@@ -22,7 +22,6 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
-
     private final UserDetailsService userDetailsService;
 
     @Override
@@ -38,14 +37,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String jwt;
         final String userEmail;
 
-        // in case auth header is not passed.
         if (authHeader == null || !authHeader.startsWith(BEARER_KEYWORD)) {
             filterChain.doFilter(request, response);
             return;
         }
 
         jwt = authHeader.substring(BEARER_KEYWORD.length());
-        userEmail = jwtService.extractUsername(jwt); // TODO: Extract the user email from JWT Token
+        userEmail = jwtService.extractUsername(jwt);
 
         // check for existence of user email
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
