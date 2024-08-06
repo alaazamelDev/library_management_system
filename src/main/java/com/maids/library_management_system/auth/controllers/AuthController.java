@@ -1,7 +1,6 @@
 package com.maids.library_management_system.auth.controllers;
 
 import com.maids.library_management_system.auth.requests.AuthenticationRequest;
-import com.maids.library_management_system.auth.requests.RegisterRequest;
 import com.maids.library_management_system.auth.responses.AuthenticationResponse;
 import com.maids.library_management_system.auth.services.AuthService;
 import jakarta.validation.Valid;
@@ -18,13 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final AuthService service;
-
-    @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(
-            @Valid @RequestBody RegisterRequest request
-    ) {
-        return ResponseEntity.ok(service.register(request));
-    }
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
