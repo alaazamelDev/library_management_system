@@ -6,6 +6,7 @@ import com.maids.library_management_system.book.requests.CreateBookRequest;
 import com.maids.library_management_system.book.requests.UpdateBookRequest;
 import com.maids.library_management_system.config.exceptions.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ public class BookService {
 
     private final BookRepository bookRepository;
 
+    @Cacheable(cacheNames = "books_list")
     public List<Book> findAll() {
         Iterable<Book> books = bookRepository.findAll();
         return Streamable.of(books).toList();

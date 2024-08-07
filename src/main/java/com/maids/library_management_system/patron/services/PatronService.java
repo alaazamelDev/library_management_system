@@ -10,6 +10,7 @@ import com.maids.library_management_system.patron.repositories.PatronRepository;
 import com.maids.library_management_system.patron.requests.CreatePatronRequest;
 import com.maids.library_management_system.patron.requests.UpdatePatronRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,7 @@ public class PatronService {
     private final UserRepository userRepository;
     private final AuthService authService;
 
+    @Cacheable(cacheNames = "patrons_list")
     public List<Patron> findAll() {
         return patronRepository.findAll();
     }
